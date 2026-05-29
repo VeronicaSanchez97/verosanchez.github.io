@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>VERO SÁNCHEZ — Diseñadora que no pasa desapercibida</title>
+
+<!-- ═══════════════════════════════════════════════════
+  📌 CAMBIA AQUÍ: El título que aparece en la pestaña del navegador
+══════════════════════════════════════════════════════ -->
+<title>Tu Nombre — Diseñadora que no pasa desapercibida</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Syne+Mono&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -43,7 +48,6 @@ body{
   transition:left 0.12s ease,top 0.12s ease,width 0.3s,height 0.3s;
   opacity:0.5;
 }
-a:hover~.cursor,.cursor.hover{width:24px;height:24px}
 
 /* NAV */
 nav{
@@ -103,14 +107,12 @@ nav{
   transition:transform 0.6s ease;
 }
 .hero-right:hover img{transform:scale(1.03)}
-/* Overlay con acento de color encima de la foto */
 .hero-right::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(135deg,rgba(200,255,0,0.08) 0%,transparent 60%),
              linear-gradient(to right,rgba(10,10,10,0.5) 0%,transparent 40%);
   pointer-events:none;z-index:1;
 }
-/* Etiqueta flotante sobre la foto */
 .hero-img-label{
   position:absolute;bottom:2rem;left:2rem;z-index:2;
   font-family:'Syne Mono',monospace;font-size:0.62rem;
@@ -119,17 +121,15 @@ nav{
   padding:0.35rem 0.8rem;background:rgba(10,10,10,0.6);
   backdrop-filter:blur(4px);
 }
-/* Placeholder cuando no hay imagen */
 .hero-placeholder{
   width:100%;height:100%;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  gap:1rem;color:rgba(240,237,230,0.15);
+  gap:1rem;color:rgba(240,237,230,0.2);
   font-family:'Syne Mono',monospace;font-size:0.7rem;
   letter-spacing:0.1em;text-align:center;padding:2rem;
   border-left:1px solid var(--border);
 }
-.hero-placeholder svg{opacity:0.2}
 .hero-noise{
   position:absolute;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
@@ -151,7 +151,7 @@ nav{
 }
 .hero-title{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(4.5rem,14vw,13rem);
+  font-size:clamp(4.5rem,10vw,11rem);
   line-height:0.9;letter-spacing:0.02em;
   animation:fadeUp 0.7s 0.1s ease both;
 }
@@ -187,7 +187,6 @@ nav{
   writing-mode:vertical-rl;
   animation:fadeUp 0.7s 0.4s ease both;
 }
-
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(30px)}
   to{opacity:1;transform:translateY(0)}
@@ -256,10 +255,6 @@ nav{
   display:grid;grid-template-columns:1fr 1fr;
   gap:2rem;align-items:end;margin-bottom:3rem;
 }
-.work-note{
-  color:rgba(240,237,230,0.4);font-size:0.85rem;
-  font-style:italic;text-align:right;
-}
 .projects{display:flex;flex-direction:column;gap:2px}
 .project{
   display:grid;grid-template-columns:80px 1fr auto;
@@ -326,16 +321,12 @@ nav{
 .exp-item{
   padding:2.5rem 0;
   border-bottom:1px solid var(--border);
-  position:relative;
 }
 .exp-header{
   display:flex;justify-content:space-between;
   align-items:flex-start;gap:1rem;margin-bottom:0.75rem;
 }
-.exp-role{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:1.1rem;
-}
+.exp-role{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;}
 .exp-year{
   font-family:'Syne Mono',monospace;font-size:0.7rem;
   letter-spacing:0.1em;color:var(--acid);
@@ -359,10 +350,6 @@ nav{
   transition:background 0.3s;cursor:none;
 }
 .svc:hover{background:#111}
-.svc-icon{
-  font-size:2.5rem;margin-bottom:1.5rem;
-  display:block;
-}
 .svc-num{
   font-family:'Bebas Neue',sans-serif;font-size:4rem;
   color:rgba(200,255,0,0.08);line-height:1;
@@ -382,9 +369,7 @@ nav{
   letter-spacing:0.08em;color:rgba(240,237,230,0.3);
   padding-left:1rem;position:relative;
 }
-.svc-list li::before{
-  content:'→';position:absolute;left:0;color:var(--acid);
-}
+.svc-list li::before{content:'→';position:absolute;left:0;color:var(--acid);}
 
 /* CTA BAND */
 .cta-band{
@@ -398,9 +383,7 @@ nav{
   font-size:clamp(2rem,6vw,4.5rem);
   line-height:0.95;color:#0A0A0A;
 }
-.cta-text span{
-  -webkit-text-stroke:2px #0A0A0A;color:transparent;
-}
+.cta-text span{-webkit-text-stroke:2px #0A0A0A;color:transparent;}
 .cta-action{display:flex;flex-direction:column;gap:1rem;align-items:flex-end}
 .cta-link{
   display:inline-flex;align-items:center;gap:0.75rem;
@@ -408,8 +391,7 @@ nav{
   background:#0A0A0A;color:var(--acid);
   text-decoration:none;font-weight:700;
   font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;
-  transition:transform 0.2s,box-shadow 0.2s;
-  cursor:none;
+  transition:transform 0.2s,box-shadow 0.2s;cursor:none;
 }
 .cta-link:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--pink)}
 .cta-note{
@@ -436,7 +418,7 @@ footer p{
 }
 .footer-links a:hover{color:var(--acid)}
 
-/* MOBILE */
+/* ═══════════ RESPONSIVE MÓVIL ═══════════ */
 @media(max-width:768px){
   html{cursor:auto}
   .cursor,.cursor-follower{display:none}
@@ -454,7 +436,6 @@ footer p{
   .section{padding:4rem 1.5rem}
   .about-grid{grid-template-columns:1fr;gap:2.5rem}
   .work-intro{grid-template-columns:1fr;gap:0.5rem}
-  .work-note{text-align:left}
   .project{grid-template-columns:50px 1fr auto;gap:1rem;padding:1.2rem 0}
   .project-num{font-size:1.8rem}
   .exp-grid{grid-template-columns:1fr;gap:2rem}
@@ -478,71 +459,121 @@ footer p{
 <div class="cursor" id="cursor"></div>
 <div class="cursor-follower" id="follower"></div>
 
-<!-- NAV -->
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                   BARRA DE NAVEGACIÓN               ║
+     ╚══════════════════════════════════════════════════════╝ -->
 <nav>
-  <a href="#" class="nav-logo">Tu<span>.</span>Nombre</a>
+
+  <!-- 📌 CAMBIA: Las dos letras/iniciales o nombre corto del logo -->
+  <a href="#" class="nav-logo">VERO<span>.</span>SÁNCHEZ</a>
+
   <ul class="nav-links">
-    <li><a href="#trabajo">Work</a></li>
-    <li><a href="#experiencia">XP</a></li>
+    <!-- 📌 CAMBIA: El texto de los enlaces del menú si quieres otros nombres -->
+    <li><a href="#trabajo">PROYECTOS CHULIS</a></li>
+    <li><a href="#experiencia">EXPERIENCIA</a></li>
     <li><a href="#servicios">Skills</a></li>
     <li><a href="#contacto">Hablemos</a></li>
   </ul>
+
+  <!-- 📌 CAMBIA: Este texto aparece arriba a la derecha con el punto verde parpadeando.
+       Puedes escribir "Disponible para freelance", "Abierta a oportunidades", etc. -->
   <div class="nav-available">
     <div class="dot"></div>
-    Disponible para proyectos
+    DISPONIBILIDAD INMEDIATA
   </div>
+
 </nav>
 
 
-<!-- HERO -->
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                      HERO / PORTADA                 ║
+     ╚══════════════════════════════════════════════════════╝ -->
 <section class="hero">
-  <!-- COLUMNA IZQUIERDA -->
+
+  <!-- ── COLUMNA IZQUIERDA: texto ── -->
   <div class="hero-left">
     <div class="hero-noise"></div>
     <div class="hero-grid"></div>
+
+    <!-- 📌 CAMBIA: La etiqueta pequeña que resume tu perfil -->
     <div class="hero-tag">✦ Ilustradora · Diseñadora Gráfica · UX/UI</div>
+
+    <!-- 📌 CAMBIA: El título enorme de la portada.
+         Cada línea va dentro de su propio <span>.
+         "stroke" = texto hueco | "acid" = verde | "pink" = rosa
+         Puedes cambiar las palabras que quieras. -->
     <h1 class="hero-title">
       <span class="stroke">DISEÑO</span><br>
       <span class="acid">SIN</span><br>
       <span class="pink">FILTROS</span>
     </h1>
+
     <div class="hero-sub">
+      <!-- 📌 CAMBIA: La frase de descripción corta debajo del título grande -->
       <p class="hero-desc">
         Creo cosas bonitas que también funcionan. 3 años convirtiendo ideas en diseños que paran el scroll, venden y se recuerdan.
       </p>
+
+      <!-- 📌 CAMBIA: El texto del botón principal si quieres otro copy -->
       <a href="#trabajo" class="hero-cta">
-        Ver mi trabajo ↗
+        mis proyectos chulos ↗
       </a>
     </div>
-    <div class="scroll-hint">Scroll para explorar ↓</div>
+
   </div>
 
-  <!-- COLUMNA DERECHA — FOTO -->
-  <!-- 
-    CÓMO AÑADIR TU FOTO:
-    1. Sube tu imagen a GitHub en la carpeta /img/ (ver guía abajo)
-    2. Cambia src="img/foto-hero.jpg" por el nombre de tu archivo
-    3. Borra el bloque hero-placeholder (las 6 líneas de abajo)
-    4. Descomenta la línea <img ...> quitando las flechas de comentario
-  -->
+  <!-- ── COLUMNA DERECHA: tu foto ── -->
   <div class="hero-right">
-    <!-- <img src="img/foto-hero.jpg" alt="Tu Nombre — Diseñadora" loading="eager"> -->
-    <!-- <div class="hero-img-label">Tu Nombre — Diseñadora</div> -->
 
-    <!-- PLACEHOLDER: borra este bloque cuando subas tu foto -->
+    <!--
+    ╔══════════════════════════════════════════════════════════╗
+    ║   📸 CÓMO AÑADIR TU FOTO EN VS CODE                     ║
+    ╠══════════════════════════════════════════════════════════╣
+    ║  1. En VS Code, abre el panel lateral izquierdo          ║
+    ║     (el explorador de archivos).                         ║
+    ║  2. Haz clic derecho en la carpeta de tu proyecto        ║
+    ║     y selecciona "New Folder" → llámala:  img            ║
+    ║  3. Copia tu foto dentro de esa carpeta img/             ║
+    ║     y renómbrala exactamente:  foto-hero.jpg             ║
+    ║     (resolución recomendada: 900 x 1100 px, máx 300 KB) ║
+    ║  4. Borra las dos líneas de comentario <!-- y -->        ║
+    ║     que hay justo debajo, así quedará activa la foto.    ║
+    ║  5. Borra también el bloque "PLACEHOLDER" entero         ║
+    ║     (desde <div class="hero-placeholder"> hasta          ║
+    ║     su </div> de cierre).                                ║
+    ║                                                          ║
+    ║   Si tu foto se llama diferente, cambia foto-hero.jpg    ║
+    ║   por el nombre real de tu archivo.                      ║
+    ╚══════════════════════════════════════════════════════════╝
+    -->
+
+    <!-- DESCOMENTA ESTAS 2 LÍNEAS CUANDO TENGAS TU FOTO LISTA:
+    <img src="img/foto-hero.jpg" alt="Tu Nombre — Diseñadora" loading="eager">
+    <div class="hero-img-label">📌 CAMBIA: Tu nombre o tagline aquí</div>
+    -->
+
+    <!-- PLACEHOLDER — BORRA ESTE BLOQUE CUANDO SUBAS TU FOTO -->
     <div class="hero-placeholder">
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="52" height="52" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="4" y="4" width="40" height="40" rx="2" stroke="currentColor" stroke-width="1.5"/>
         <circle cx="17" cy="18" r="4" stroke="currentColor" stroke-width="1.5"/>
         <path d="M4 34l10-8 8 6 8-10 14 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
       </svg>
-      <span>Añade aquí tu foto<br>Sigue la guía ↓</span>
+      <span>Aquí va tu foto<br>Sigue las instrucciones ↑</span>
     </div>
+    <!-- FIN PLACEHOLDER -->
+
   </div>
 </section>
 
 
-<!-- MARQUEE -->
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║              BANDA DE TEXTO ANIMADO (MARQUEE)       ║
+     ╚══════════════════════════════════════════════════════╝
+  📌 CAMBIA: Los textos que van desplazándose. Están repetidos
+     dos veces para que el bucle sea continuo (no borres la mitad).
+     Puedes cambiar las palabras por tus especialidades. -->
 <div class="marquee-wrap" aria-hidden="true">
   <div class="marquee-track">
     <span class="marquee-item">Diseño Gráfico <span class="marquee-sep">✦</span></span>
@@ -552,6 +583,7 @@ footer p{
     <span class="marquee-item">Marketing Digital <span class="marquee-sep">✦</span></span>
     <span class="marquee-item">Industria del Mueble <span class="marquee-sep">✦</span></span>
     <span class="marquee-item">Branding <span class="marquee-sep">✦</span></span>
+    <!-- Copia idéntica para bucle continuo — no toques esto -->
     <span class="marquee-item">Diseño Gráfico <span class="marquee-sep">✦</span></span>
     <span class="marquee-item">Ilustración Digital <span class="marquee-sep">✦</span></span>
     <span class="marquee-item">UX/UI Design <span class="marquee-sep">✦</span></span>
@@ -563,15 +595,27 @@ footer p{
 </div>
 
 
-<!-- ABOUT -->
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                    SOBRE MÍ                         ║
+     ╚══════════════════════════════════════════════════════╝ -->
 <section class="section" id="sobre-mi">
   <span class="section-label">// sobre mí</span>
+
+  <!-- 📌 CAMBIA: El título grande de esta sección -->
   <h2 class="section-title">No soy<br>otra diseñadora</h2>
+
   <div class="about-grid">
     <div>
+      <!-- 📌 CAMBIA: La frase impactante de la izquierda.
+           Las palabras dentro de <span class="hl"> salen en verde ácido.
+           Las de <span class="hl2"> salen en rosa. -->
       <p class="about-statement">
         Me muevo igual de bien entre un <span class="hl">estampado textil</span>, una campaña en redes y una <span class="hl2">app de cero</span>.
       </p>
+
+      <!-- 📌 CAMBIA: Los programas y habilidades que dominas.
+           Puedes añadir más copiando una línea <span class="tag">...</span>
+           o borrar las que no uses. -->
       <div class="tags">
         <span class="tag">Figma</span>
         <span class="tag">Adobe Illustrator</span>
@@ -585,9 +629,12 @@ footer p{
         <span class="tag">Tipografía</span>
       </div>
     </div>
+
+    <!-- 📌 CAMBIA: Los párrafos de texto de tu bio.
+         Puedes añadir o quitar párrafos (<p>...</p>). -->
     <div class="about-body">
       <p>
-        Empecé diseñando para la industria textil — where every millimeter counts. Después di el salto al marketing digital, donde aprendí que el diseño tiene que mover a la gente en menos de tres segundos. Ahora trabajo en la industria del mueble, creando identidades visuales para colecciones que se tocan, se huelen y se viven.
+        Empecé diseñando para la industria textil — donde cada milímetro cuenta. Después di el salto al marketing digital, donde aprendí que el diseño tiene que mover a la gente en menos de tres segundos. Ahora trabajo en la industria del mueble, creando identidades visuales para colecciones que se tocan, se huelen y se viven.
       </p>
       <p>
         ¿Qué tienen en común estos tres mundos? Que en todos ellos el diseño tiene que resolver un problema real. Y eso es exactamente lo que hago.
@@ -600,18 +647,28 @@ footer p{
 </section>
 
 
-<!-- TRABAJO -->
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                    PROYECTOS                        ║
+     ╚══════════════════════════════════════════════════════╝ -->
 <section class="section" id="trabajo">
   <div class="work-intro">
     <div>
       <span class="section-label">// trabajo seleccionado</span>
+      <!-- 📌 CAMBIA: El título de la sección de proyectos -->
       <h2 class="section-title">Proyectos<br>que importan</h2>
     </div>
-    <p class="work-note">← Sustituye estas descripciones<br>por tus proyectos reales</p>
   </div>
 
   <div class="projects">
-    <div class="project">
+
+    <!-- ── PROYECTO 1 ──
+    📌 CAMBIA en este bloque:
+       - "project-cat"  → la categoría (ej: "Branding · Textil")
+       - "project-name" → el nombre del proyecto
+       - "project-desc" → una frase corta describiendo qué hiciste
+    Si tienes una URL donde ver el proyecto, cambia el href="#"
+    por el enlace real (ej: href="https://behance.net/tu-proyecto") -->
+    <a href="#" class="project" style="text-decoration:none;color:inherit;">
       <div class="project-num">01</div>
       <div class="project-info">
         <div class="project-cat">Diseño Textil · Branding</div>
@@ -619,8 +676,10 @@ footer p{
         <div class="project-desc">Estampados, sistema de marca y packaging para colección de moda.</div>
       </div>
       <div class="project-arrow">↗</div>
-    </div>
-    <div class="project">
+    </a>
+
+    <!-- ── PROYECTO 2 ── -->
+    <a href="#" class="project" style="text-decoration:none;color:inherit;">
       <div class="project-num">02</div>
       <div class="project-info">
         <div class="project-cat">UX/UI · App</div>
@@ -628,8 +687,10 @@ footer p{
         <div class="project-desc">Investigación UX, arquitectura de información y diseño de interfaz.</div>
       </div>
       <div class="project-arrow">↗</div>
-    </div>
-    <div class="project">
+    </a>
+
+    <!-- ── PROYECTO 3 ── -->
+    <a href="#" class="project" style="text-decoration:none;color:inherit;">
       <div class="project-num">03</div>
       <div class="project-info">
         <div class="project-cat">Marketing Digital · Social Media</div>
@@ -637,8 +698,10 @@ footer p{
         <div class="project-desc">Kit completo de contenidos, templates y guía de estilo.</div>
       </div>
       <div class="project-arrow">↗</div>
-    </div>
-    <div class="project">
+    </a>
+
+    <!-- ── PROYECTO 4 ── -->
+    <a href="#" class="project" style="text-decoration:none;color:inherit;">
       <div class="project-num">04</div>
       <div class="project-info">
         <div class="project-cat">Industria del Mueble · Editorial</div>
@@ -646,21 +709,45 @@ footer p{
         <div class="project-desc">Dirección de arte, fotografía y maquetación de catálogo de colección.</div>
       </div>
       <div class="project-arrow">↗</div>
-    </div>
+    </a>
+
+    <!--
+    ¿QUIERES AÑADIR MÁS PROYECTOS?
+    Copia el bloque de arriba (desde <a href="#" class="project"...>
+    hasta su </a> de cierre) y pégalo aquí debajo.
+    Cambia el número (05, 06...) y los textos.
+    -->
+
   </div>
 </section>
 
 
-<!-- EXPERIENCIA -->
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                   EXPERIENCIA                       ║
+     ╚══════════════════════════════════════════════════════╝ -->
 <section class="section" id="experiencia">
   <span class="section-label">// trayectoria</span>
+  <!-- 📌 CAMBIA: Título de la sección -->
   <h2 class="section-title">El camino<br>hasta aquí</h2>
+
   <div class="exp-grid">
+
+    <!-- Bloque izquierdo fijo — puedes cambiar el número y el texto -->
     <div class="exp-sticky">
+      <!-- 📌 CAMBIA: El número grande (tus años de experiencia) -->
       <div class="exp-big">3+</div>
+      <!-- 📌 CAMBIA: El texto pequeño debajo del número -->
       <p class="exp-sub">años haciendo diseño que se nota.<br><br>Tres sectores. Cientos de decisiones de diseño. Un único objetivo: que funcione.</p>
     </div>
+
     <div class="exp-list">
+
+      <!-- ── TRABAJO ACTUAL ──
+      📌 CAMBIA:
+         - exp-role    → tu cargo (ej: "Diseñadora Gráfica Freelance")
+         - exp-year    → las fechas (ej: "2023 → HOY")
+         - exp-company → empresa o sector
+         - exp-desc    → descripción de lo que hiciste/haces -->
       <div class="exp-item">
         <div class="exp-header">
           <div class="exp-role">Diseñadora Gráfica</div>
@@ -669,6 +756,8 @@ footer p{
         <div class="exp-company">Industria del Mueble</div>
         <p class="exp-desc">Diseño de materiales gráficos, catálogos y comunicación visual para marcas del sector del mueble. Dirección de arte para colecciones y sistemas de identidad de producto.</p>
       </div>
+
+      <!-- ── TRABAJO ANTERIOR 1 ── -->
       <div class="exp-item">
         <div class="exp-header">
           <div class="exp-role">Diseñadora Gráfica & UX/UI</div>
@@ -677,6 +766,8 @@ footer p{
         <div class="exp-company">Marketing Digital</div>
         <p class="exp-desc">Diseño de piezas digitales, landing pages y experiencia de usuario para clientes de distintos sectores. Aprendí que el diseño digital tiene que moverse rápido y medir resultados.</p>
       </div>
+
+      <!-- ── TRABAJO ANTERIOR 2 ── -->
       <div class="exp-item">
         <div class="exp-header">
           <div class="exp-role">Diseñadora Gráfica Textil</div>
@@ -685,16 +776,30 @@ footer p{
         <div class="exp-company">Industria Textil & Moda</div>
         <p class="exp-desc">Creación de estampados e ilustraciones para colecciones de moda. Desarrollo de identidad visual y packaging. Aquí entendí que cada detalle tiene un porqué.</p>
       </div>
+
+      <!--
+      ¿QUIERES AÑADIR MÁS EXPERIENCIA?
+      Copia un bloque <div class="exp-item">...</div>
+      y pégalo aquí debajo con tus datos.
+      -->
+
     </div>
   </div>
 </section>
 
 
-<!-- SERVICIOS -->
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                    SERVICIOS                        ║
+     ╚══════════════════════════════════════════════════════╝ -->
 <section class="section" id="servicios">
   <span class="section-label">// qué puedo hacer por ti</span>
+  <!-- 📌 CAMBIA: Título de la sección -->
   <h2 class="section-title">Mis armas</h2>
+
   <div class="services-grid">
+
+    <!-- ── SERVICIO 1 ──
+    📌 CAMBIA: El título, descripción y lista de cada servicio -->
     <div class="svc">
       <div class="svc-num">01</div>
       <div class="svc-name">Ilustración & Branding</div>
@@ -706,6 +811,8 @@ footer p{
         <li>Estampados</li>
       </ul>
     </div>
+
+    <!-- ── SERVICIO 2 ── -->
     <div class="svc">
       <div class="svc-num">02</div>
       <div class="svc-name">Diseño Gráfico & Editorial</div>
@@ -717,6 +824,8 @@ footer p{
         <li>Dirección de arte</li>
       </ul>
     </div>
+
+    <!-- ── SERVICIO 3 ── -->
     <div class="svc">
       <div class="svc-num">03</div>
       <div class="svc-name">UX/UI Design</div>
@@ -728,77 +837,96 @@ footer p{
         <li>Prototipado en Figma</li>
       </ul>
     </div>
+
   </div>
 </section>
 
 
-<!-- CTA BAND -->
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║              BLOQUE DE CONTACTO / CTA               ║
+     ╚══════════════════════════════════════════════════════╝ -->
 <div class="cta-band" id="contacto">
+
+  <!-- 📌 CAMBIA: El texto del bloque verde grande de contacto -->
   <div class="cta-text">
     ¿Tienes un<br>
     proyecto<br>
     <span>chulo?</span>
   </div>
+
   <div class="cta-action">
-    <a href="mailto:tuemail@email.com" class="cta-link">Escríbeme ↗</a>
-    <p class="cta-note">tuemail@email.com · Respondo en menos de 24h</p>
+    <!-- 📌 CAMBIA: tu-email@email.com por tu correo real (¡en los dos sitios!) -->
+    <a href="mailto:tu-email@email.com" class="cta-link">Escríbeme ↗</a>
+    <p class="cta-note">tu-email@email.com · Respondo en menos de 24h</p>
   </div>
+
 </div>
 
 
-<!-- FOOTER -->
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                      FOOTER                         ║
+     ╚══════════════════════════════════════════════════════╝ -->
 <footer>
+  <!-- 📌 CAMBIA: Tu nombre en el copyright -->
   <p>© 2025 Tu Nombre — Diseñado con intención (y mucho café)</p>
+
   <div class="footer-links">
-    <a href="https://linkedin.com/in/tuperfil" target="_blank">LinkedIn</a>
-    <a href="https://behance.net/tuperfil" target="_blank">Behance</a>
-    <a href="https://instagram.com/tuperfil" target="_blank">Instagram</a>
+    <!-- 📌 CAMBIA: Las URLs por las tuyas reales -->
+    <a href="https://linkedin.com/in/TU-PERFIL" target="_blank">LinkedIn</a>
+    <a href="https://behance.net/TU-PERFIL" target="_blank">Behance</a>
+    <a href="https://instagram.com/TU-PERFIL" target="_blank">Instagram</a>
   </div>
 </footer>
 
+
 <script>
-// Cursor personalizado
-const cursor=document.getElementById('cursor');
-const follower=document.getElementById('follower');
-if(cursor&&follower){
-  let mx=0,my=0,fx=0,fy=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    cursor.style.left=mx+'px';cursor.style.top=my+'px';
+// ── Cursor personalizado (solo escritorio) ──
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('follower');
+if (cursor && follower) {
+  let mx = 0, my = 0, fx = 0, fy = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
   });
-  function animFollower(){
-    fx+=(mx-fx)*0.12;fy+=(my-fy)*0.12;
-    follower.style.left=fx+'px';follower.style.top=fy+'px';
+  function animFollower() {
+    fx += (mx - fx) * 0.12;
+    fy += (my - fy) * 0.12;
+    follower.style.left = fx + 'px';
+    follower.style.top = fy + 'px';
     requestAnimationFrame(animFollower);
   }
   animFollower();
-  document.querySelectorAll('a,button,[data-hover]').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{
-      cursor.style.width='20px';cursor.style.height='20px';
-      follower.style.width='60px';follower.style.height='60px';
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px'; cursor.style.height = '20px';
+      follower.style.width = '60px'; follower.style.height = '60px';
     });
-    el.addEventListener('mouseleave',()=>{
-      cursor.style.width='12px';cursor.style.height='12px';
-      follower.style.width='36px';follower.style.height='36px';
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px'; cursor.style.height = '12px';
+      follower.style.width = '36px'; follower.style.height = '36px';
     });
   });
 }
 
-// Fade-in on scroll
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.style.opacity='1';
-      e.target.style.transform='translateY(0)';
+// ── Animación de entrada al hacer scroll ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
     }
   });
-},{threshold:0.1});
-document.querySelectorAll('.project,.exp-item,.svc,.about-statement,.about-body').forEach(el=>{
-  el.style.opacity='0';
-  el.style.transform='translateY(24px)';
-  el.style.transition='opacity 0.6s ease, transform 0.6s ease';
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.project, .exp-item, .svc, .about-statement, .about-body').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
   obs.observe(el);
 });
 </script>
+
 </body>
 </html>
