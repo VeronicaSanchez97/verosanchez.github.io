@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- ═══════════════════════════════════════════════════
+  📌 CAMBIA: El título que aparece en la pestaña del navegador
+  Formato recomendado: "Nombre del Proyecto — Tu Nombre"
+══════════════════════════════════════════════════════ -->
+<title>Klimax — Verónica Sánchez</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Syne+Mono&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0A;
+  --fg:#F0EDE6;
+  --acid:#C8FF00;
+  --pink:#FF2D78;
+  --muted:#555046;
+  --border:rgba(240,237,230,0.1);
+}
+html{scroll-behavior:smooth;cursor:none}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:'Syne',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* CURSOR */
+.cursor{
+  position:fixed;width:12px;height:12px;
+  background:var(--acid);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width 0.2s,height 0.2s;
+  mix-blend-mode:difference;
+}
+.cursor-follower{
+  position:fixed;width:36px;height:36px;
+  border:1px solid var(--acid);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:left 0.12s ease,top 0.12s ease,width 0.3s,height 0.3s;
+  opacity:0.5;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 2.5rem;
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+  background:rgba(10,10,10,0.7);
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.4rem;letter-spacing:0.06em;
+  color:var(--fg);text-decoration:none;
+}
+.nav-logo span{color:var(--acid)}
+.nav-back{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-family:'Syne Mono',monospace;
+  font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  cursor:none;transition:color 0.2s;
+}
+.nav-back:hover{color:var(--acid)}
+.nav-back svg{transition:transform 0.2s}
+.nav-back:hover svg{transform:translateX(-3px)}
+
+/* HERO DEL PROYECTO */
+.project-hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  padding-top:72px;
+}
+.project-hero-left{
+  padding:4rem 2.5rem 4rem 2.5rem;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  border-right:1px solid var(--border);
+  position:relative;
+}
+.project-hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:80px 80px;pointer-events:none;
+}
+.project-meta{
+  display:flex;flex-wrap:wrap;gap:0.5rem;
+  margin-bottom:2.5rem;position:relative;z-index:1;
+}
+.meta-tag{
+  font-family:'Syne Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:0.35rem 0.9rem;border:1px solid var(--border);
+  color:var(--muted);
+}
+.meta-tag.highlight{border-color:var(--acid);color:var(--acid)}
+.project-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,7vw,7rem);
+  line-height:0.9;letter-spacing:0.02em;
+  position:relative;z-index:1;
+  animation:fadeUp 0.7s ease both;
+}
+.project-title .stroke{
+  -webkit-text-stroke:1px var(--fg);color:transparent;
+}
+.project-title .acid{color:var(--acid)}
+.project-subtitle{
+  margin-top:1.5rem;
+  font-size:1rem;color:rgba(240,237,230,0.5);
+  max-width:44ch;line-height:1.8;
+  position:relative;z-index:1;
+  animation:fadeUp 0.7s 0.15s ease both;
+}
+.project-stats{
+  display:flex;gap:2.5rem;
+  margin-top:2.5rem;
+  padding-top:2rem;
+  border-top:1px solid var(--border);
+  position:relative;z-index:1;
+  animation:fadeUp 0.7s 0.25s ease both;
+}
+.stat{display:flex;flex-direction:column;}
+.stat-label{
+  font-family:'Syne Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:0.3rem;
+}
+.stat-value{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:0.9rem;
+}
+
+/* IMAGEN HERO DERECHA */
+.project-hero-right{
+  position:relative;overflow:hidden;background:#111;
+}
+.project-hero-right img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  display:block;filter:grayscale(15%) contrast(1.05);
+}
+.project-hero-right::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(200,255,0,0.06) 0%,transparent 50%);
+  pointer-events:none;
+}
+.hero-placeholder{
+  width:100%;height:100%;min-height:50vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:1rem;color:rgba(240,237,230,0.15);
+  font-family:'Syne Mono',monospace;font-size:0.7rem;
+  letter-spacing:0.1em;text-align:center;padding:2rem;
+}
+
+/* SECCIONES GENERALES */
+.section{padding:5rem 2.5rem;border-top:1px solid var(--border)}
+.section-label{
+  font-family:'Syne Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--acid);display:block;margin-bottom:1rem;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,5vw,4rem);
+  line-height:0.95;letter-spacing:0.03em;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* INTRO / DESCRIPCIÓN */
+.intro-grid{
+  display:grid;grid-template-columns:1fr 2fr;
+  gap:4rem;align-items:start;margin-top:3rem;
+}
+.intro-big{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,8vw,7rem);
+  line-height:0.85;color:rgba(200,255,0,0.12);
+  position:sticky;top:100px;
+}
+.intro-body{
+  font-size:1.05rem;color:rgba(240,237,230,0.65);
+  line-height:1.9;
+}
+.intro-body p+p{margin-top:1.5rem}
+
+/* GALERÍA DE IMÁGENES */
+.gallery-grid{
+  display:grid;
+  gap:4px;
+  margin-top:3rem;
+}
+/* Layout por defecto: 2 columnas */
+.gallery-grid.cols-2{grid-template-columns:1fr 1fr}
+.gallery-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+/* Una imagen que ocupa todo el ancho */
+.gallery-item{
+  overflow:hidden;background:#111;
+  position:relative;
+}
+.gallery-item.full{grid-column:1/-1}
+.gallery-item.tall{aspect-ratio:4/5}
+.gallery-item.wide{aspect-ratio:16/9}
+.gallery-item.square{aspect-ratio:1/1}
+.gallery-item img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  transition:transform 0.5s ease;
+  filter:grayscale(10%);
+}
+.gallery-item:hover img{transform:scale(1.03)}
+/* Placeholder de imagen */
+.img-placeholder{
+  width:100%;height:100%;min-height:300px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:0.75rem;
+  color:rgba(240,237,230,0.15);
+  font-family:'Syne Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.1em;text-align:center;
+  border:1px dashed rgba(240,237,230,0.08);
+}
+.img-placeholder svg{opacity:0.2}
+/* Pie de foto */
+.gallery-caption{
+  font-family:'Syne Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.1em;color:var(--muted);
+  padding:0.75rem 0 0.25rem;
+}
+
+/* DETALLES DEL PROCESO */
+.process-list{
+  display:flex;flex-direction:column;gap:0;
+  margin-top:3rem;
+}
+.process-item{
+  display:grid;grid-template-columns:60px 1fr;
+  gap:2rem;align-items:start;
+  padding:2rem 0;
+  border-bottom:1px solid var(--border);
+}
+.process-num{
+  font-family:'Bebas Neue',sans-serif;font-size:3rem;
+  color:rgba(200,255,0,0.1);line-height:1;
+}
+.process-body{display:flex;flex-direction:column;}
+.process-title{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:1rem;margin-bottom:0.5rem;
+}
+.process-desc{
+  font-size:0.875rem;color:rgba(240,237,230,0.5);
+  line-height:1.8;
+}
+
+/* DATOS / FICHA TÉCNICA */
+.ficha{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);
+  margin-top:3rem;
+}
+.ficha-item{
+  background:var(--bg);padding:2rem 1.5rem;
+}
+.ficha-label{
+  font-family:'Syne Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:0.5rem;
+}
+.ficha-value{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:0.95rem;
+}
+
+/* RESULTADOS */
+.results-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);
+  margin-top:3rem;
+}
+.result-item{
+  background:var(--bg);padding:3rem 2rem;
+  transition:background 0.3s;
+}
+.result-item:hover{background:#0f0f0f}
+.result-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,5vw,5rem);
+  color:var(--acid);line-height:1;
+  margin-bottom:0.5rem;
+}
+.result-label{
+  font-size:0.875rem;color:rgba(240,237,230,0.5);
+  line-height:1.6;
+}
+
+/* NAVEGACIÓN ENTRE PROYECTOS */
+.project-nav{
+  border-top:1px solid var(--border);
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.proj-nav-item{
+  padding:3rem 2.5rem;
+  text-decoration:none;color:var(--fg);
+  border-right:1px solid var(--border);
+  transition:background 0.2s;
+  cursor:none;
+}
+.proj-nav-item:last-child{border-right:none}
+.proj-nav-item:hover{background:#0f0f0f}
+.proj-nav-dir{
+  font-family:'Syne Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:0.75rem;
+}
+.proj-nav-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.5rem,3vw,2.5rem);
+  line-height:1;transition:color 0.2s;
+}
+.proj-nav-item:hover .proj-nav-name{color:var(--acid)}
+
+/* FOOTER */
+footer{
+  padding:2rem 2.5rem;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:1rem;
+}
+footer p{
+  font-family:'Syne Mono',monospace;
+  font-size:0.65rem;letter-spacing:0.1em;color:var(--muted);
+}
+.footer-links{display:flex;gap:2rem}
+.footer-links a{
+  font-family:'Syne Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.1em;color:var(--muted);text-decoration:none;
+  cursor:none;transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--acid)}
+
+/* ═══════════ RESPONSIVE MÓVIL ═══════════ */
+@media(max-width:768px){
+  html{cursor:auto}
+  .cursor,.cursor-follower{display:none}
+  a,button{cursor:pointer}
+  nav{padding:1rem 1.5rem}
+  .project-hero{grid-template-columns:1fr;min-height:auto}
+  .project-hero-left{padding:6rem 1.5rem 3rem;border-right:none}
+  .project-hero-right{min-height:60vw;border-top:1px solid var(--border)}
+  .project-stats{flex-wrap:wrap;gap:1.5rem}
+  .section{padding:3.5rem 1.5rem}
+  .intro-grid{grid-template-columns:1fr;gap:2rem}
+  .intro-big{position:static;font-size:5rem}
+  .gallery-grid.cols-2,.gallery-grid.cols-3{grid-template-columns:1fr}
+  .gallery-item.full,.gallery-item.tall,.gallery-item.wide,.gallery-item.square{aspect-ratio:4/3}
+  .ficha{grid-template-columns:1fr 1fr}
+  .results-grid{grid-template-columns:1fr}
+  .process-item{grid-template-columns:40px 1fr;gap:1rem}
+  .project-nav{grid-template-columns:1fr}
+  .proj-nav-item{border-right:none;border-bottom:1px solid var(--border);padding:2rem 1.5rem}
+  footer{padding:1.5rem;flex-direction:column;gap:1rem}
+  .footer-links{gap:1.5rem}
+}
+@media(max-width:480px){
+  .ficha{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="follower"></div>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                   BARRA DE NAVEGACIÓN               ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<nav>
+  <!-- 📌 CAMBIA: Tu nombre/logo (igual que en el index.html) -->
+  <a href="index.html" class="nav-logo">Vero<span>.</span>Sánchez</a>
+
+  <!-- Este botón lleva de vuelta al portfolio. No toques el href. -->
+  <a href="index.html#trabajo" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Volver al portfolio
+  </a>
+</nav>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                  HERO DEL PROYECTO                  ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<section class="project-hero">
+
+  <!-- ── COLUMNA IZQUIERDA: título y datos ── -->
+  <div class="project-hero-left">
+    <div class="project-hero-grid"></div>
+
+    <!-- 📌 CAMBIA: Las etiquetas de categoría y año del proyecto.
+         La que tiene class="highlight" sale en verde ácido.
+         Puedes añadir más <span class="meta-tag"> o quitar las que sobren. -->
+    <div class="project-meta">
+      <span class="meta-tag highlight">Diseño Gráfico</span>
+      <span class="meta-tag">TRABAJO FIN DE GRADO</span>
+      <span class="meta-tag">2023</span>
+    </div>
+
+    <!-- 📌 CAMBIA: El título grande del proyecto.
+         Puedes usar "stroke" (hueco), "acid" (verde) o texto normal.
+         Ponlo en 1, 2 o 3 líneas según el nombre del proyecto. -->
+    <h1 class="project-title">
+    
+      <span class="acid">KLIMAX</span>
+    </h1>
+
+    <!-- 📌 CAMBIA: Una frase corta que resuma el proyecto -->
+    <p class="project-subtitle">
+       Desde la educación hasta la concienciación, Klimax es un proyecto que busca inspirar a las personas a tomar conciencia sobre su salud sexual, más allá de la edad y los tabúes.
+    </p>
+
+    <!-- 📌 CAMBIA: Los 3 datos rápidos del proyecto (rol, cliente, duración).
+         Puedes cambiar las etiquetas "Rol", "Cliente", "Duración" por lo que necesites. -->
+    <div class="project-stats">
+      <div class="stat">
+        <div class="stat-label">Rol</div>
+        <div class="stat-value">Diseñadora Gráfica</div>
+      </div>
+     
+      <div class="stat">
+        <div class="stat-label">Año</div>
+        <div class="stat-value">2023</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── COLUMNA DERECHA: imagen principal del proyecto ──
+  ╔══════════════════════════════════════════════════════════╗
+  ║  📸 CÓMO AÑADIR LA IMAGEN PRINCIPAL                      ║
+  ╠══════════════════════════════════════════════════════════╣
+  ║  1. Guarda la imagen en la carpeta img/ con el nombre    ║
+  ║     que quieras (ej: proyecto-01-hero.jpg)               ║
+  ║  2. Borra el comentario de la línea <img ...>            ║
+  ║  3. Borra el bloque hero-placeholder (el de abajo)       ║
+  ║  Resolución recomendada: 900 × 1100 px, máx 300 KB      ║
+  ╚══════════════════════════════════════════════════════════╝ -->
+  <div class="project-hero-right">
+  
+    <img src="img/imagen-principal-klimax.jpg" alt="📌 CAMBIA: descripción de la imagen">
+ 
+   
+  </div>
+
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║              FICHA TÉCNICA DEL PROYECTO             ║
+     ╚══════════════════════════════════════════════════════╝
+  📌 CAMBIA: Los 4 datos de la ficha.
+     Puedes cambiar las etiquetas y valores por los de tu proyecto.
+     Si no necesitas alguno, borra ese bloque <div class="ficha-item">. -->
+<section class="section">
+  <span class="section-label">// ficha técnica</span>
+  <div class="ficha">
+    <div class="ficha-item">
+      <div class="ficha-label">Sector</div>
+      <div class="ficha-value">Ámbito social</div>
+    </div>
+    <div class="ficha-item">
+      <div class="ficha-label">Herramientas</div>
+      <div class="ficha-value">Illustrator, Procreate, Photoshop, InDesign</div>
+    </div>
+    <div class="ficha-item">
+      <div class="ficha-label">Entregables</div>
+      <div class="ficha-value">Branding + Diseño Editorial + Arte Final</div>
+    </div>
+    <div class="ficha-item">
+      <div class="ficha-label">Duración</div>
+      <div class="ficha-value">6 meses</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║               DESCRIPCIÓN / EL RETO                 ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<section class="section">
+  <span class="section-label">// el reto</span>
+  <!-- 📌 CAMBIA: El título de esta sección -->
+  <h2 class="section-title">De dónde<br>venía todo</h2>
+
+  <div class="intro-grid">
+    <!-- 📌 CAMBIA: La palabra grande decorativa (suele ser algo del proyecto) -->
+    <div class="intro-big">WHY</div>
+
+    <!-- 📌 CAMBIA: Los párrafos explicando el contexto y el reto del proyecto.
+         Añade o quita párrafos (<p>...</p>) según necesites. -->
+    <div class="intro-body">
+      <p>
+        Un proyecto muy especial para mí, ya que es el resultado de mi Trabajo Fin de Grado en Diseño Gráfico. Klimax es una revista sobre salud y educación sexual y contenido LGTB, que va dirigido a un público joven e inexperto.
+      </p>
+      <p>
+        Recogiendo datos reales y escalofriantes sobre ETS (Enfermedades de Transmisión Sexual) y embarazos no deseados, el proyecto busca ser un recurso educativo, pero también un punto de partida para romper tabúes y fomentar una conversación abierta sobre sexualidad.
+      </p>
+      <p>
+        En un mundo donde la información errónea y los tabúes siguen siendo un gran obstáculo para la educación sexual, Klimax se posiciona como una herramienta accesible, inclusiva y visualmente atractiva para empoderar a las personas a tomar decisiones informadas sobre su salud sexual.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║              GALERÍA — BLOQUE 1                     ║
+     ║         (imágenes del proceso / primeros pasos)     ║
+     ╚══════════════════════════════════════════════════════╝
+
+  📸 CÓMO USAR LA GALERÍA:
+  Cada imagen va dentro de un <div class="gallery-item">.
+  Tienes estas clases para controlar el tamaño:
+    - full   → ocupa todo el ancho (16:9)
+    - wide   → ratio panorámico (16:9)
+    - tall   → ratio vertical (4:5)
+    - square → cuadrada (1:1)
+
+  Para el layout en columnas, cambia la clase del <div class="gallery-grid">:
+    - cols-2 → 2 columnas (por defecto)
+    - cols-3 → 3 columnas
+
+  📸 PARA AÑADIR UNA IMAGEN:
+  1. Guarda el archivo en la carpeta img/
+  2. Dentro del gallery-item, borra el bloque img-placeholder
+  3. Pon en su lugar: <img src="img/TU-ARCHIVO.jpg" alt="descripción">
+  4. El pie de foto va en <p class="gallery-caption">
+-->
+<section class="section">
+  <span class="section-label">// proceso</span>
+  <h2 class="section-title">Cómo lo<br>construí</h2>
+
+  <!-- GALERÍA: 1 imagen ancha + 2 cuadradas -->
+  <div class="gallery-grid cols-2">
+
+    <!-- Imagen grande que ocupa todo el ancho -->
+    <div class="gallery-item full wide">
+   
+      <img src="img/imagen-grande-klimax.jpg" alt="Descripción de la imagen">
+  
+      
+    </div>
+    <!-- 📌 CAMBIA: El pie de foto -->
+    <p class="gallery-caption" style="grid-column:1/-1">Proceso de troquelado a mano sobre papel verjurado.</p>
+
+    <!-- Imagen cuadrada izquierda -->
+    <div class="gallery-item square">
+   
+      <img src="img/imagen-proceso-cuadrada-1.jpg" alt="Descripción">
+
+      
+    </div>
+    <!-- 📌 CAMBIA: El pie de foto -->
+    <p class="gallery-caption">Las tres llaves fueron dibujadas a mano en Procreate, desde su proceso de boceto hasta su arte final. La primera llave refleja el típico jarrón en el que la mora bajaba a por agua al río, en la segunda podemos ver el torreón donde fue presa, y finalmente en la tercera podemos ver el escudo cristiano de su enamorado.a</p>
+
+    <!-- Imagen cuadrada derecha -->
+    <div class="gallery-item square">
+     
+      <img src="img/imagen-proceso-cuadrada-2.jpg" alt="Descripción">
+     
+    
+    </div>
+    <p class="gallery-caption">A su vez, también realicé las etiquetas traseras de las botellas, donde se detalla mejor la historia y todas las especificaciones del producto.</p>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                  EL PROCESO / PASOS                 ║
+     ╚══════════════════════════════════════════════════════╝
+  📌 CAMBIA: Cada paso del proceso que seguiste en el proyecto.
+     Puedes añadir más bloques <div class="process-item"> copiando uno.
+     O quitar los que no necesites. -->
+<section class="section">
+  <span class="section-label">// metodología</span>
+  <h2 class="section-title">Paso a<br>paso</h2>
+
+  <div class="process-list">
+
+    <div class="process-item">
+      <div class="process-num">01</div>
+      <div class="process-body">
+        <!-- 📌 CAMBIA: Título del paso -->
+        <div class="process-title">Research & Briefing</div>
+        <!-- 📌 CAMBIA: Descripción del paso -->
+        <p class="process-desc">En esta fase de investigación y briefing fue donde todo comenzó. Me empapé de la historia y las referencias culturales para entender mejor el contexto del proyecto.</p>
+      </div>
+    </div>
+
+    <div class="process-item">
+      <div class="process-num">02</div>
+      <div class="process-body">
+        <div class="process-title">Conceptualización y primeros bocetos</div>
+        <p class="process-desc">En esta fase, pasé de la investigación a las primeras ideas: sketches, paletas de color, decisiones tipográficas, pruebas de concepto y primeros bocetos.</p>
+      </div>
+    </div>
+
+    <div class="process-item">
+      <div class="process-num">03</div>
+      <div class="process-body">
+        <div class="process-title">Diseño & Producción</div>
+        <p class="process-desc">En esta fase, desarrollé las etiquetas finales, las troquelé a mano y las pegué sobre botellas reales.</p>
+      </div>
+    </div>
+
+    <div class="process-item">
+      <div class="process-num">04</div>
+      <div class="process-body">
+        <div class="process-title">Fotografías</div>
+        <p class="process-desc">Tras realizar el proyecto, tomé fotografías del resultado final para documentar el trabajo y mostrar los detalles del proceso.</p>
+      </div>
+    </div>
+
+    <!--
+    ¿Quieres añadir más pasos?
+    Copia un bloque <div class="process-item">...</div> y pégalo aquí.
+    -->
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║          GALERÍA — BLOQUE 2 (resultado final)       ║
+     ╚══════════════════════════════════════════════════════╝
+  Mismas instrucciones que la galería anterior.
+  Esta es para mostrar el resultado final del proyecto. -->
+<section class="section">
+  <span class="section-label">// resultado final</span>
+  <h2 class="section-title">Así quedó</h2>
+
+  <div class="gallery-grid cols-3">
+
+    <div class="gallery-item tall">
+     
+      <img src="img/imagen-proceso-cuadrada-3.jpg" alt="Resultado 1">
+    
+     
+    </div>
+
+    <div class="gallery-item tall">
+    
+      <img src="img/imagen-proceso-cuadrada-4.jpg" alt="Resultado 2">
+
+      
+    </div>
+
+    <div class="gallery-item tall">
+   
+      <img src="img/imagen-proceso-cuadrada-5.jpg" alt="Resultado 3">
+
+    </div>
+
+    <div class="gallery-item full wide">
+   
+      <img src="img/imagen-panoramica-final.jpg" alt="Vista general resultado">
+
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="4" width="40" height="40" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="17" cy="18" r="4" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M4 34l10-8 8 6 8-10 14 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span>resultado-04.jpg — imagen panorámica final</span>
+      </div>
+    </div>
+    <p class="gallery-caption" style="grid-column:1/-1">Resultado final del proyecto.</p>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                   RESULTADOS / IMPACTO              ║
+     ╚══════════════════════════════════════════════════════╝
+  📌 CAMBIA: Los 3 resultados o métricas del proyecto.
+     Pueden ser datos cuantitativos ("↑40% ventas"),
+     cualitativos ("Premio de diseño") o simplemente
+     logros destacados del proyecto.
+     Si no tienes datos, puedes poner frases cortas de impacto. -->
+
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║          NAVEGACIÓN ENTRE PROYECTOS                 ║
+     ╚══════════════════════════════════════════════════════╝
+  📌 CAMBIA:
+     - href del botón "Anterior" → nombre del archivo HTML del proyecto anterior
+     - href del botón "Siguiente" → nombre del archivo HTML del proyecto siguiente
+     - Los nombres de los proyectos
+  Si es el primer proyecto, borra el bloque "Anterior".
+  Si es el último, borra el bloque "Siguiente". -->
+
+  
+<nav class="project-nav">
+
+  <a href="proyecto-03.html" class="proj-nav-item">
+    <div class="proj-nav-dir">Siguiente →</div>
+    <div class="proj-nav-name">KLIMAX</div>
+  </a>
+</nav>
+
+
+<!-- ╔══════════════════════════════════════════════════════╗
+     ║                      FOOTER                         ║
+     ╚══════════════════════════════════════════════════════╝ -->
+<footer>
+  <!-- 📌 CAMBIA: Tu nombre -->
+  <p>© 2026 Verónica Sánchez</p>
+  <div class="footer-links">
+    <!-- 📌 CAMBIA: Tus URLs reales -->
+    <a href="https://linkedin.com/in/veronica-sanchez-97-diseno/" target="_blank">LinkedIn</a>
+    <a href="index.html">← Portfolio</a>
+  </div>
+</footer>
+
+
+<script>
+// Cursor personalizado
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('follower');
+if (cursor && follower) {
+  let mx = 0, my = 0, fx = 0, fy = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+  function animFollower() {
+    fx += (mx - fx) * 0.12; fy += (my - fy) * 0.12;
+    follower.style.left = fx + 'px'; follower.style.top = fy + 'px';
+    requestAnimationFrame(animFollower);
+  }
+  animFollower();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px'; cursor.style.height = '20px';
+      follower.style.width = '60px'; follower.style.height = '60px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px'; cursor.style.height = '12px';
+      follower.style.width = '36px'; follower.style.height = '36px';
+    });
+  });
+}
+
+// Animación de entrada al hacer scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.process-item, .result-item, .ficha-item, .gallery-item, .intro-body').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  obs.observe(el);
+});
+</script>
+
+</body>
+</html>
